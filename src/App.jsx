@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "@components/Header/Header";
 import Sidebar from "@components/Sidebar/Sidebar";
 import Timeline from "@components/Timeline/Timeline";
+import RightPane from "@components/RightPane/RightPane";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <div className="flex-grow h-full p-5 overflow-auto">
             <Timeline />
           </div>
-          <div className="hidden h-full border-l min-w-64 border-zinc-300 md:inline-flex"></div>
+          <RightPane />
         </div>
       </div>
     </div>
