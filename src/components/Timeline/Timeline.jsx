@@ -85,7 +85,7 @@ function Timeline() {
         <ShareEventForm />
       </Modal>
       <ShareInput onShare={handleShare} />
-      <Tabs tabs={["All Events", "Upcoming", "Past"]}>
+      <Tabs tabs={["All", "Memories", "Reminders", "Time Capsules"]}>
         <div className="flex items-center gap-2">
           <button className="p-1.5 rounded-full bg-slate-200">
             <RiFileListLine className="w-5 h-5 text-black hover:text-black" />
