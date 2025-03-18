@@ -11,7 +11,7 @@ export default function ShareInput({ onShare }) {
       <UserPhoto src={ProfilePhoto} size="h-9 w-9" />
       <input
         type="text"
-        placeholder="Share a memorable event from your life."
+        placeholder="Share a heartfelt message for your loved one’s milestones or future events."
         className="flex-1 px-5 text-gray-700 placeholder-gray-400 bg-transparent focus:outline-none"
         onFocus={onShare}
       />

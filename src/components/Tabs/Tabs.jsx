@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-export default function Tabs({ tabs }) {
+export default function Tabs({ tabs, children }) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="w-full my-3 border-b border-gray-300">
-      <div className="flex">
+    <div className="flex w-full my-3 border-b border-gray-300">
+      <div className="flex flex-grow">
         {tabs.map((tab, index) => (
           <button
             key={index}
@@ -21,6 +21,7 @@ export default function Tabs({ tabs }) {
           </button>
         ))}
       </div>
+      <div className="flex flex-grow-0">{children}</div>
     </div>
   );
 }

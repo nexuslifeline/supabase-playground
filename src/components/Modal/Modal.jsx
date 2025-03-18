@@ -12,7 +12,7 @@ export default function Modal({
 
   const sizeClasses = {
     sm: "w-1/4", // Small
-    md: "max-w-[520px] w-full", // Medium (Default)
+    md: "max-w-[500px] w-full", // Medium (Default)
     lg: "w-3/4", // Large
     xl: "w-11/12" // Extra Large
   };

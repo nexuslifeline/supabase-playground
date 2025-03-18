@@ -6,6 +6,9 @@ import Modal from "@/components/Modal/Modal";
 import ShareEventForm from "@/components/ShareEventForm/ShareEventForm";
 import Memory from "@/components/Memory/Memory";
 
+import { LuLayoutGrid } from "react-icons/lu";
+import { RiFileListLine } from "react-icons/ri";
+
 const events = [
   {
     title: "A Heartfelt Journey Through Our Memories",
@@ -82,7 +85,16 @@ function Timeline() {
         <ShareEventForm />
       </Modal>
       <ShareInput onShare={handleShare} />
-      <Tabs tabs={["All Events", "Upcoming", "Past"]} />
+      <Tabs tabs={["All Events", "Upcoming", "Past"]}>
+        <div className="flex items-center gap-2">
+          <button className="p-1.5 rounded-full bg-slate-200">
+            <RiFileListLine className="w-5 h-5 text-black hover:text-black" />
+          </button>
+          <button>
+            <LuLayoutGrid className="w-5 h-5 text-gray-500 hover:text-black" />
+          </button>
+        </div>
+      </Tabs>
 
       <div className="py-4 space-y-6">
         {events.map(data => (
