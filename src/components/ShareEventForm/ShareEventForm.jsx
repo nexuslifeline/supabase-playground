@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { FaCamera, FaVideo, FaMicrophone } from "react-icons/fa";
+import Tabs from "@components/Tabs/Tabs";
+import UserPhoto from "@components/UserPhoto/UserPhoto";
+import ProfilePhoto from "@assets/profile.jpeg";
+import { RiImageAiLine } from "react-icons/ri";
+import { RiFileVideoLine } from "react-icons/ri";
+import { RiFolderMusicLine } from "react-icons/ri";
+import { GrDocumentText } from "react-icons/gr";
 
 const ShareEventForm = () => {
   const [attachments, setAttachments] = useState({
@@ -13,100 +19,72 @@ const ShareEventForm = () => {
   };
 
   return (
-    <div className="p-6 mx-auto space-y-3 bg-white">
-      <h2 className="text-lg font-semibold text-gray-900">Create a Memory</h2>
+    <div className="mx-auto bg-white">
+      <div className="mt-4 space-y-2">
+        {/* Title Input */}
+        <label className="block text-sm font-medium text-gray-900">Title</label>
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter a title..."
+          className="w-full p-2 text-gray-700 bg-gray-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-      {/* Title Input */}
-      <label className="block text-sm font-medium text-gray-900">Title</label>
-      <input
-        type="text"
-        name="title"
-        placeholder="Enter a title..."
-        className="w-full p-2 text-gray-700 bg-gray-100 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
-      {/* Message Input */}
-      <label className="block text-sm font-medium text-gray-900">Message</label>
-      <textarea
-        name="message"
-        placeholder="Write your message..."
-        className="w-full h-24 p-2 text-gray-700 bg-gray-100 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
-      {/* Recipient Selection */}
-      <label className="block text-sm font-medium text-gray-900">
-        Recipients
-      </label>
-      <input
-        type="text"
-        name="recipient"
-        placeholder="Assign recipients (e.g., John, Mom, Dad)"
-        className="w-full p-2 text-gray-700 bg-gray-100 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
-      {/* Release Trigger Selection */}
-      <label className="block text-sm font-medium text-gray-900">
-        Release Trigger
-      </label>
-      <select
-        name="trigger"
-        className="w-full p-2 text-gray-700 bg-gray-100 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        <option value="">Select Release Trigger</option>
-        <option value="posthumous">Posthumous Delivery</option>
-        <option value="anniversary">Anniversary</option>
-        <option value="milestone">Milestone</option>
-        <option value="life_event">Life Event</option>
-      </select>
-
-      {/* Date Input */}
-      <label className="block text-sm font-medium text-gray-900">
-        Release Date
-      </label>
-      <input
-        type="date"
-        name="date"
-        className="w-full p-2 text-gray-700 bg-gray-100 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
-      {/* Attachments */}
-      <label className="block text-sm font-medium text-gray-900">
-        Attachments
-      </label>
-      <div className="flex gap-3 mt-2">
-        <label className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-gray-100 border rounded cursor-pointer hover:bg-gray-200">
-          <FaCamera /> Photo
-          <input
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={e => handleFileChange("photo", e)}
-          />
+        {/* Message Input */}
+        <label className="block text-sm font-medium text-gray-900">
+          Message
         </label>
-        <label className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-gray-100 border rounded cursor-pointer hover:bg-gray-200">
-          <FaVideo /> Video
-          <input
-            type="file"
-            accept="video/*"
-            className="hidden"
-            onChange={e => handleFileChange("video", e)}
-          />
+        <textarea
+          name="message"
+          placeholder="Write your message..."
+          className="w-full h-24 p-2 text-gray-700 bg-gray-100 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+        <div className="flex justify-start px-4 py-2 space-x-3 text-gray-500 border rounded-lg">
+          <button className="hover:text-black">
+            <RiImageAiLine className="w-6 h-6" />
+          </button>
+          <button className="hover:text-black">
+            <RiFileVideoLine className="w-6 h-6" />
+          </button>
+          <button className="hover:text-black">
+            <RiFolderMusicLine className="w-6 h-6" />
+          </button>
+          <button className="hover:text-black">
+            <GrDocumentText className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Recipient Selection */}
+        <label className="block text-sm font-medium text-gray-900">
+          Recipients
         </label>
-        <label className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-gray-100 border rounded cursor-pointer hover:bg-gray-200">
-          <FaMicrophone /> Audio
-          <input
-            type="file"
-            accept="audio/*"
-            className="hidden"
-            onChange={e => handleFileChange("audio", e)}
-          />
+        <select
+          name="recipient"
+          placeholder="Assign recipients (e.g., John, Mom, Dad)"
+          className="w-full p-2 text-gray-700 bg-gray-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option>chris14rueda@gmail.com</option>
+          <option>gelynrueda@gmail.com</option>
+        </select>
+
+        {/* Date Input */}
+        <label className="block text-sm font-medium text-gray-900">
+          Release Date
         </label>
+        <input
+          type="date"
+          name="date"
+          className="w-full p-2 text-gray-700 bg-gray-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
       </div>
 
       {/* Submit Button */}
-      <button className="w-full px-4 py-2 mt-4 text-white bg-blue-600 rounded hover:bg-blue-700">
-        Save Memory
-      </button>
+      <div className="flex justify-end">
+        <button className="px-5 py-2 mt-4 text-white bg-black rounded-lg ">
+          Create
+        </button>
+      </div>
     </div>
   );
 };
