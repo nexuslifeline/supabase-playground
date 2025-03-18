@@ -21,7 +21,7 @@ export default function Modal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <div
         className={`bg-white rounded-2xl shadow-lg transform transition-all p-8 space-y-4
-                    ${sizeClasses[size]} max-w-full`}
+                    ${sizeClasses[size]}`}
       >
         <div className="flex flex-col">
           <h2 className="text-xl font-semibold text-black">{title}</h2>
