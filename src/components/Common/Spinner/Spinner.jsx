@@ -1,6 +1,6 @@
 import React from "react";
 
-import clsx from "classnames";
+import cn from "classnames";
 
 const Spinner = ({ size = "extra-small", className }) => {
   const sizes = {
@@ -13,7 +13,7 @@ const Spinner = ({ size = "extra-small", className }) => {
   const spinnerSize = sizes[size] || sizes.small; // Fallback to 'small' if size is invalid
 
   return (
-    <div className={clsx("flex justify-center items-center", className)}>
+    <div className={cn("flex justify-center items-center", className)}>
       <div
         className={`${spinnerSize} border-t-transparent border-blue-500 rounded-full animate-spin`}
       ></div>

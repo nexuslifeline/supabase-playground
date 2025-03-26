@@ -1,4 +1,4 @@
-import cx from "classnames";
+import cn from "classnames";
 
 const UserPhoto = ({
   src,
@@ -8,7 +8,7 @@ const UserPhoto = ({
 }) => {
   return (
     <div
-      className={cx(
+      className={cn(
         `rounded-full overflow-hidden cursor-pointer border border-white ${size}`,
         className
       )}

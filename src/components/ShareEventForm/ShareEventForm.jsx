@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 
 import Button from "@/components/Common/Button/Button";
-import TextInput from "@components/Common/TextInput/TextInput";
-import TextArea from "@components/Common/TextArea/TextArea";
+import FormNavigation from "@/components/ShareEventForm/FormNavigation";
+import MessageForm from "@/components/ShareEventForm/MessageForm";
+import AttachmentForm from "@/components/ShareEventForm/AttachmentForm";
+import RecipientForm from "@/components/ShareEventForm/RecipientForm";
 import { uploadFile } from "@services/storage";
 import { saveMemory } from "@/services/memories";
 
@@ -18,6 +20,7 @@ const ShareEventForm = () => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [releaseDate, setReleaseDate] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [isSaving, setIsSaving] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -82,81 +85,46 @@ const ShareEventForm = () => {
   }, [title]);
 
   return (
-    <div className="mx-auto bg-white">
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="*/*"
-        onChange={handleFileChange}
-        className="hidden"
-      />
-
-      <div className="mt-4 space-y-2">
-        {/* Title Input */}
-        <label className="block text-sm font-medium text-gray-900">Title</label>
-        <TextInput
-          name="title"
-          placeholder="Enter a title..."
-          onChange={e => setTitle(e.target.value)}
-          error={errors?.title}
-        />
-
-        {/* Message Input */}
-        <label className="block text-sm font-medium text-gray-900">
-          Message
-        </label>
-        <TextArea
-          name="message"
-          placeholder="Write your message..."
-          onChange={e => setMessage(e.target.value)}
-        />
-
-        <div className="flex justify-start px-4 py-2 space-x-3 text-gray-500 border rounded-lg">
-          <button onClick={handleBrowse} className="hover:text-black">
-            <RiImageAiLine className="w-6 h-6" />
-          </button>
-          <button onClick={handleBrowse} className="hover:text-black">
-            <RiFileVideoLine className="w-6 h-6" />
-          </button>
-          <button onClick={handleBrowse} className="hover:text-black">
-            <RiFolderMusicLine className="w-6 h-6" />
-          </button>
-          <button onClick={handleBrowse} className="hover:text-black">
-            <GrDocumentText className="w-5 h-5" />
-          </button>
+    <>
+      <div className="flex">
+        <div className="w-[300px] min-w-[300px] h-full p-4">
+          <div className="flex flex-col gap-2 mb-4">
+            <h2 className="text-xl font-semibold">Create Message</h2>
+            <p className="text-gray-500">
+              Share cherished memories with loved ones and leave a lasting
+              legacy for the future.
+            </p>
+          </div>
+          <FormNavigation
+            selectedIndex={selectedIndex}
+            onSelectMenu={setSelectedIndex}
+          />
         </div>
+        <div className="flex-grow bg-white border p-7 rounded-xl border-zinc-200 min-h-[calc(100vh-200px)]">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="*/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
 
-        {/* Recipient Selection */}
-        <label className="block text-sm font-medium text-gray-900">
-          Recipients
-        </label>
-        <select
-          name="recipient"
-          placeholder="Assign recipients (e.g., John, Mom, Dad)"
-          className="w-full p-2 text-gray-700 bg-gray-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option>chris14rueda@gmail.com</option>
-          <option>gelynrueda@gmail.com</option>
-        </select>
-
-        {/* Date Input */}
-        <label className="block text-sm font-medium text-gray-900">
-          Release Date
-        </label>
-        <TextInput
-          type="date"
-          name="date"
-          onChange={e => setReleaseDate(e.target.value)}
-        />
+          <MessageForm isVisible={selectedIndex === 0} />
+          <AttachmentForm isVisible={selectedIndex === 1} />
+          <RecipientForm isVisible={selectedIndex === 2} />
+        </div>
       </div>
-
-      {/* Submit Button */}
       <div className="flex justify-end">
-        <Button onClick={handleCreate} isBusy={isSaving} disabled={isSaving}>
-          Create
+        <Button
+          onClick={handleCreate}
+          isBusy={isSaving}
+          disabled={isSaving}
+          className="min-w-[100px]"
+        >
+          Save
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 

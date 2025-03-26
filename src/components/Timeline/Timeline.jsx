@@ -81,7 +81,14 @@ function Timeline() {
   };
   return (
     <>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Modal
+        // title="Create Memory"
+        // description="Share cherished memories with loved ones and leave a lasting legacy for the future."
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        size="lg"
+        hasClose={false}
+      >
         <ShareEventForm />
       </Modal>
       <ShareInput onShare={handleShare} />
@@ -97,8 +104,8 @@ function Timeline() {
       </Tabs>
 
       <div className="py-4 space-y-6">
-        {events.map(data => (
-          <Memory data={data} />
+        {events.map((data, idx) => (
+          <Memory key={idx} data={data} />
         ))}
       </div>
     </>
