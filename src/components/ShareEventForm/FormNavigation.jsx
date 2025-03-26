@@ -1,4 +1,6 @@
 import cn from "classnames";
+
+import { GrTrigger } from "react-icons/gr";
 import { FiMessageSquare } from "react-icons/fi";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { ImAttachment } from "react-icons/im";
@@ -6,12 +8,13 @@ import { ImAttachment } from "react-icons/im";
 const items = [
   { text: "Message", icon: FiMessageSquare },
   { text: "Attachments", icon: ImAttachment },
-  { text: "Recipients", icon: RiUserSettingsLine }
+  // { text: "Recipients", icon: RiUserSettingsLine },
+  { text: "Trigger & Recipients", icon: GrTrigger }
 ];
 
 const FormNavigation = ({ selectedIndex = 0, onSelectMenu }) => {
   return (
-    <ul className="w-full mt-8 space-y-1.5">
+    <ul className="w-full mt-8 space-y-1">
       {items.map((item, idx) => {
         const { text, icon: Icon } = item;
         const isSelected = selectedIndex === idx;

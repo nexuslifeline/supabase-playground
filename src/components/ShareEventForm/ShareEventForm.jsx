@@ -4,7 +4,6 @@ import Button from "@/components/Common/Button/Button";
 import FormNavigation from "@/components/ShareEventForm/FormNavigation";
 import MessageForm from "@/components/ShareEventForm/MessageForm";
 import AttachmentForm from "@/components/ShareEventForm/AttachmentForm";
-import RecipientForm from "@/components/ShareEventForm/RecipientForm";
 import { uploadFile } from "@services/storage";
 import { saveMemory } from "@/services/memories";
 
@@ -12,6 +11,7 @@ import { RiImageAiLine } from "react-icons/ri";
 import { RiFileVideoLine } from "react-icons/ri";
 import { RiFolderMusicLine } from "react-icons/ri";
 import { GrDocumentText } from "react-icons/gr";
+import TriggerForm from "./TriggerForm";
 
 const ShareEventForm = () => {
   const fileInputRef = useRef(null);
@@ -89,7 +89,7 @@ const ShareEventForm = () => {
       <div className="flex">
         <div className="w-[300px] min-w-[300px] h-full p-4">
           <div className="flex flex-col gap-2 mb-4">
-            <h2 className="text-xl font-semibold">Create Message</h2>
+            <h2 className="text-2xl font-semibold">Create Message</h2>
             <p className="text-gray-500">
               Share cherished memories with loved ones and leave a lasting
               legacy for the future.
@@ -111,7 +111,7 @@ const ShareEventForm = () => {
 
           <MessageForm isVisible={selectedIndex === 0} />
           <AttachmentForm isVisible={selectedIndex === 1} />
-          <RecipientForm isVisible={selectedIndex === 2} />
+          <TriggerForm isVisible={selectedIndex === 2} />
         </div>
       </div>
       <div className="flex justify-end">

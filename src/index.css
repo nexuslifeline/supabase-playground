@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-size: 14px; /* Or 14px, or whatever base size you want */
+  }
+}
 
 #root {
   width: 100%;
