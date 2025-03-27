@@ -82,8 +82,6 @@ function Timeline() {
   return (
     <>
       <Modal
-        // title="Create Memory"
-        // description="Share cherished memories with loved ones and leave a lasting legacy for the future."
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         size="lg"

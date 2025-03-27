@@ -30,7 +30,7 @@ export default function FileList({ files }) {
       {files.map((file, index) => (
         <div
           key={index}
-          className="flex items-center gap-2 p-2 bg-white border rounded-md cursor-pointer hover:bg-gray-100 hover:border-black"
+          className="flex items-center gap-2 p-2 bg-white border rounded-md cursor-pointer hover:ring-2 hover:ring-blue-500 hover:bg-blue-100"
         >
           <div className="pt-1.5">{getFileIcon(file.name)}</div>
           <div className="flex flex-col items-start justify-start flex-grow">
