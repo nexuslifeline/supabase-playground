@@ -18,7 +18,9 @@ const Index = () => (
         <Route path={`/reset`} element={<ResetPasswordPage />} />
       </Route>
       <Route path={`/`} element={<MainLayout />}>
-        <Route path={"/timeline"} element={<TimelinePage />} />
+        <Route element={<AuthGuard />}>
+          <Route path={"timeline"} element={<TimelinePage />} />
+        </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
