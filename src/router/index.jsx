@@ -1,5 +1,6 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
+import AuthGuard from "@components/AuthGuard/AuthGuard";
 import BaseLayout from "@layout/Base";
 import MainLayout from "@layout/Main";
 import LoginPage from "@views/LoginPage";
@@ -17,7 +18,9 @@ const Index = () => (
         <Route path={`/reset`} element={<ResetPasswordPage />} />
       </Route>
       <Route path={`/`} element={<MainLayout />}>
-        <Route path={"timeline"} element={<TimelinePage />} />
+        <Route element={<AuthGuard />}>
+          <Route path={"timeline"} element={<TimelinePage />} />
+        </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

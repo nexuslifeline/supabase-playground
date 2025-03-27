@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { supabase } from "../supabaseConfig";
 
+import { supabase } from "@/supabaseConfig";
 import AuthSection from "@components/AuthSection/AuthSection";
 import Button from "@components/Common/Button/Button";
 import Label from "@components/Common/Label/Label";
