@@ -33,7 +33,7 @@ const AuthGuard = () => {
   if (isLoading) return null;
 
   if (!session) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;
