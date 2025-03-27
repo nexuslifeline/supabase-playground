@@ -10,11 +10,10 @@ import { IoLogoGoogle } from "react-icons/io";
 
 const LoginPage = () => {
   return (
-    <AuthSection>
-      <h2 className="mb-1 text-2xl font-bold text-gray-800">Welcome Back</h2>
-      <p className="mb-6 text-sm text-gray-500">
-        Login to continue your journey with us.
-      </p>
+    <AuthSection
+      title="Welcome Back"
+      description="Login to continue your journey with us."
+    >
       <Button variant="secondary" block>
         <IoLogoGoogle className="w-5 h-5" />
         Sign in with Google
