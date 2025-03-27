@@ -19,7 +19,7 @@ const Index = () => (
       </Route>
       <Route path={`/`} element={<MainLayout />}>
         <Route element={<AuthGuard />}>
-          <Route path={"timeline"} element={<TimelinePage />} />
+          <Route path={"/timeline"} element={<TimelinePage />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFoundPage />} />
