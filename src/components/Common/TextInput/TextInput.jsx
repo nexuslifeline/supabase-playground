@@ -3,7 +3,7 @@ const TextInput = ({ error, ...props }) => {
     <div className="w-full">
       <input
         type="text"
-        className={`w-full p-2 text-gray-700 border rounded-lg focus:outline-none focus:ring-2 ${
+        className={`w-full p-2 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ${
           error ? "border-red-500 focus:ring-red-500" : "focus:ring-blue-500"
         }`}
         {...props}
