@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { supabase } from "@/supabaseConfig";
@@ -15,6 +15,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ email: "", password: "", general: "" });
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleEmailLogin = async e => {
@@ -53,6 +54,16 @@ const LoginPage = () => {
       setError(prev => ({ ...prev, general: error.message }));
     }
   };
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        navigate("/timeline", { replace: true });
+      }
+    };
+    checkSession();
+  }, [navigate]);
 
   return (
     <AuthSection

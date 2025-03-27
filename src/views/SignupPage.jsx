@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { supabase } from "@/supabaseConfig";
 import AuthSection from "@components/AuthSection/AuthSection";
@@ -16,6 +16,8 @@ const SignUpPage = () => {
   const [errors, setErrors] = useState({});
   const [isBusy, setIsBusy] = useState(false);
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const validate = () => {
     const newErrors = {};
@@ -49,7 +51,7 @@ const SignUpPage = () => {
       await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: window.location.origin
+          redirectTo: `${window.location.origin}/timeline`
         }
       });
     } catch (error) {
@@ -57,6 +59,16 @@ const SignUpPage = () => {
       setMessage(`❌ ${error.message || "Google sign-in failed."}`);
     }
   };
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        navigate("/timeline", { replace: true });
+      }
+    };
+    checkSession();
+  }, [navigate]);
 
   return (
     <AuthSection
