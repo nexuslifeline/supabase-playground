@@ -1,70 +1,28 @@
-import { useState } from "react";
+import ProfileDropdown from "@components/Header/ProfileDropdown";
 
-import { Popover } from "@headlessui/react";
-
-import Spinner from "@components/Common/Spinner/Spinner";
-import ProfilePhoto from "@components/ProfilePhoto/ProfilePhoto";
-import { supabase } from "@/supabaseConfig";
-import { useSession } from "@store/session";
+import { TbBellHeart } from "react-icons/tb";
+import { TbMessageHeart } from "react-icons/tb";
+import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 
 const Header = () => {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const { session, getEmail, getFullName, clearSession } = useSession();
-
-  const handleLogout = async () => {
-    try {
-      setIsProcessing(true);
-      await supabase.auth.signOut();
-      clearSession();
-      navigate("/");
-    } catch (err) {
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  const menuItemClasses =
-    "cursor-pointer px-3 py-2 rounded-md hover:bg-gray-100 focus:bg-gray-200 focus:outline-none transition-colors";
-
   return (
     <div className="flex items-center justify-end w-full min-h-[70px] px-4 border-b border-zinc-300">
-      <Popover className="relative">
-        <Popover.Button className="focus:outline-none">
-          <ProfilePhoto />
-        </Popover.Button>
-
-        <Popover.Panel className="absolute right-0 mt-2 z-10 shadow-xl border border-gray-100 rounded-md w-[250px] bg-white">
-          {/* Header */}
-          <div className="px-6 py-4 border-b border-gray-100">
-            <h2 className="font-semibold">{getFullName()}</h2>
-            <p className="text-sm text-gray-400">{getEmail()}</p>
-          </div>
-
-          {/* Section 1 */}
-          <ul className="px-2 py-1.5 border-b border-gray-100">
-            <li className={menuItemClasses}>My Profile</li>
-            <li className={menuItemClasses}>Account Settings</li>
-          </ul>
-
-          {/* Section 2 */}
-          <ul className="px-2 py-1.5 border-b border-gray-100">
-            <li className={menuItemClasses}>My Messages</li>
-            <li className={menuItemClasses}>My Families & Friends</li>
-            <li className={menuItemClasses}>Upcoming Events</li>
-          </ul>
-
-          {/* Sign Out */}
-          <ul className="px-2 py-1.5">
-            <li
-              className={`${menuItemClasses} flex justify-between`}
-              onClick={handleLogout}
-            >
-              Sign out
-              {isProcessing && <Spinner />}
-            </li>
-          </ul>
-        </Popover.Panel>
-      </Popover>
+      <button className="p-2 rounded-full hover:bg-gray-200">
+        <HiMiniMagnifyingGlass className="w-6 h-6" />
+      </button>
+      <ul className="inline-flex gap-2 ml-auto mr-8">
+        <li>
+          <button className="p-2 rounded-full hover:bg-gray-200">
+            <TbMessageHeart className="w-6 h-6" />
+          </button>
+        </li>
+        <li>
+          <button className="p-2 rounded-full hover:bg-gray-200">
+            <TbBellHeart className="w-6 h-6" />
+          </button>
+        </li>
+      </ul>
+      <ProfileDropdown />
     </div>
   );
 };
