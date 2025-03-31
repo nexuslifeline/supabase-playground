@@ -1,5 +1,4 @@
-import UserPhoto from "@components/UserPhoto/UserPhoto";
-import ProfilePhoto from "@assets/profile.jpeg";
+import ProfilePhoto from "@components/ProfilePhoto/ProfilePhoto";
 import { RiImageAiLine } from "react-icons/ri";
 import { RiFileVideoLine } from "react-icons/ri";
 import { RiFolderMusicLine } from "react-icons/ri";
@@ -8,7 +7,7 @@ import { GrDocumentText } from "react-icons/gr";
 export default function ShareInput({ onShare }) {
   return (
     <div className="flex items-center p-3 bg-gray-100 rounded-lg shadow-sm">
-      <UserPhoto src={ProfilePhoto} size="h-9 w-9" />
+      <ProfilePhoto size="9" />
       <input
         type="text"
         placeholder="Share a heartfelt message for your loved one’s milestones or future events."

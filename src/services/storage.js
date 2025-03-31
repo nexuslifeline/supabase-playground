@@ -9,6 +9,7 @@ export const uploadFile = async file => {
     .upload(filePath, file);
 
   if (error) {
+    console.log("error", error);
   } else {
     return data;
   }

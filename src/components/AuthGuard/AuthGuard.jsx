@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 import { supabase } from "@/supabaseConfig";
+import { useSession } from "@store/session";
 
 const AuthGuard = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [session, setSession] = useState(null);
+  const { session, setSession } = useSession();
 
   useEffect(() => {
     // Get the current session
@@ -17,10 +18,8 @@ const AuthGuard = () => {
 
     getSession();
 
-    // Optional: listen for auth state changes
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        console.log("session", session);
         setSession(session);
       }
     );

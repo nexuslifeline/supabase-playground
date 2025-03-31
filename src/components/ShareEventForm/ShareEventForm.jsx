@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Button from "@/components/Common/Button/Button";
 import FormNavigation from "@/components/ShareEventForm/FormNavigation";
@@ -14,8 +14,6 @@ import { GrDocumentText } from "react-icons/gr";
 import TriggerForm from "./TriggerForm";
 
 const ShareEventForm = () => {
-  const fileInputRef = useRef(null);
-
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
@@ -26,21 +24,9 @@ const ShareEventForm = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const handleBrowse = () => {
-    console.log("test");
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = event => {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-      setFile(selectedFile);
-    }
-  };
-
   const validateForm = () => {
     if (!title?.trim()) {
-      setErrors({ title: "Title is required!" });
+      setErrors({ title: "Please enter a title. This field is required." });
       return false;
     }
 
@@ -57,10 +43,6 @@ const ShareEventForm = () => {
       if (!validateForm()) return;
 
       const payload = { title, message };
-      if (releaseDate) {
-        payload.releaseDate = releaseDate;
-      }
-
       const promises = [saveMemory(payload)];
 
       if (file) {
@@ -101,16 +83,16 @@ const ShareEventForm = () => {
           />
         </div>
         <div className="flex-grow bg-white border p-7 rounded-xl border-zinc-200 min-h-[calc(100vh-200px)]">
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="*/*"
-            onChange={handleFileChange}
-            className="hidden"
+          <MessageForm
+            setTitle={setTitle}
+            setMessage={setMessage}
+            errors={errors}
+            isVisible={selectedIndex === 0}
           />
-
-          <MessageForm isVisible={selectedIndex === 0} />
-          <AttachmentForm isVisible={selectedIndex === 1} />
+          <AttachmentForm
+            onFileChange={setFile}
+            isVisible={selectedIndex === 1}
+          />
           <TriggerForm isVisible={selectedIndex === 2} />
         </div>
       </div>

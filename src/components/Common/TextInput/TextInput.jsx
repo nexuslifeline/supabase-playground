@@ -8,7 +8,7 @@ const TextInput = ({ error, ...props }) => {
         }`}
         {...props}
       />
-      {error && <p className="mt-0.5 text-sm text-red-500">{error}</p>}
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 };
