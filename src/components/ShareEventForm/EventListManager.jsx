@@ -1,3 +1,5 @@
+import React from "react";
+
 import cn from "classnames";
 
 import SectionHeader from "@components/ShareEventForm/SectionHeader";
@@ -51,9 +53,8 @@ const EventListManager = ({ isVisible = false }) => {
       />
       <div className="w-full border border-gray-200 rounded-md">
         {events.map((event, index) => (
-          <>
+          <React.Fragment key={index}>
             <div
-              key={index}
               className="flex w-full gap-3 px-3 py-2.5 border-b border-gray-200 cursor-pointer"
               onClick={() => toggleRow(index)}
             >
@@ -95,7 +96,7 @@ const EventListManager = ({ isVisible = false }) => {
             >
               <RecipientSelector />
             </div>
-          </>
+          </React.Fragment>
         ))}
         <div className="flex items-center justify-center w-full gap-3 px-4 py-2.5 font-semibold cursor-pointer hover:bg-gray-100">
           + Add new event

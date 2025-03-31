@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 import FileList from "@components/FileList/FileList";
 import Spinner from "@components/Common/Spinner/Spinner";
@@ -6,19 +6,12 @@ import { uploadFile } from "@services/storage";
 
 import { FiUploadCloud } from "react-icons/fi";
 
-const FileManager = ({ onFileChange }) => {
+const FileManager = ({ onFileUpload }) => {
   const fileInputRef = useRef(null);
+
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [isDragActive, setIsDragActive] = useState(false);
-
-  const formatFileSize = bytes => {
-    if (bytes < 1024) return `${bytes} B`;
-    const kb = bytes / 1024;
-    if (kb < 1024) return `${kb.toFixed(1)} KB`;
-    const mb = kb / 1024;
-    return `${mb.toFixed(1)} MB`;
-  };
 
   const processFiles = async selectedFiles => {
     if (selectedFiles.length === 0) return;
@@ -33,7 +26,7 @@ const FileManager = ({ onFileChange }) => {
           if (result?.path) {
             return {
               name: file.name,
-              size: formatFileSize(file.size),
+              size: file.size,
               type: file.type || "unknown",
               path: result.path
             };
@@ -49,10 +42,6 @@ const FileManager = ({ onFileChange }) => {
     const paths = successfulUploads.map(file => file.path);
 
     setUploadedFiles(prev => [...prev, ...successfulUploads]);
-    if (paths.length > 0) {
-      onFileChange?.(paths);
-    }
-
     setIsUploading(false);
   };
 
@@ -83,6 +72,10 @@ const FileManager = ({ onFileChange }) => {
   const handleDragLeave = () => {
     setIsDragActive(false);
   };
+
+  useEffect(() => {
+    onFileUpload?.(uploadedFiles);
+  }, [uploadedFiles]);
 
   return (
     <>

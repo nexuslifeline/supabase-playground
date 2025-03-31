@@ -6,7 +6,8 @@ export const saveMemory = async memory => {
   const { data, error } = await supabase
     .from("memories")
     .insert([snakeKeys(memory)])
-    .select();
+    .select()
+    .single();
 
   if (error) {
     return { error: error.message };

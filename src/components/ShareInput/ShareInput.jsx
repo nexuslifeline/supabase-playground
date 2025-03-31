@@ -1,8 +1,10 @@
 import ProfilePhoto from "@components/ProfilePhoto/ProfilePhoto";
+
 import { RiImageAiLine } from "react-icons/ri";
 import { RiFileVideoLine } from "react-icons/ri";
 import { RiFolderMusicLine } from "react-icons/ri";
 import { GrDocumentText } from "react-icons/gr";
+import { ImAttachment } from "react-icons/im";
 
 export default function ShareInput({ onShare }) {
   return (
@@ -14,8 +16,8 @@ export default function ShareInput({ onShare }) {
         className="flex-1 px-5 text-gray-700 placeholder-gray-400 bg-transparent focus:outline-none"
         onFocus={onShare}
       />
-      <div className="flex space-x-3 text-gray-600" onClick={onShare}>
-        <button className="hover:text-black">
+      <div className="flex mr-1 space-x-3 text-gray-600" onClick={onShare}>
+        {/* <button className="hover:text-black">
           <RiImageAiLine className="w-6 h-6" />
         </button>
         <button className="hover:text-black">
@@ -23,9 +25,9 @@ export default function ShareInput({ onShare }) {
         </button>
         <button className="hover:text-black">
           <RiFolderMusicLine className="w-6 h-6" />
-        </button>
+        </button> */}
         <button className="hover:text-black">
-          <GrDocumentText className="w-5 h-5" />
+          <ImAttachment className="w-6 h-6" />
         </button>
       </div>
     </div>

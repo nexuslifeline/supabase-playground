@@ -4,24 +4,18 @@ import Button from "@/components/Common/Button/Button";
 import FormNavigation from "@/components/ShareEventForm/FormNavigation";
 import MessageForm from "@/components/ShareEventForm/MessageForm";
 import AttachmentForm from "@/components/ShareEventForm/AttachmentForm";
-import { uploadFile } from "@services/storage";
 import { saveMemory } from "@/services/memories";
+import { saveFiles } from "@/services/files";
 
-import { RiImageAiLine } from "react-icons/ri";
-import { RiFileVideoLine } from "react-icons/ri";
-import { RiFolderMusicLine } from "react-icons/ri";
-import { GrDocumentText } from "react-icons/gr";
 import TriggerForm from "./TriggerForm";
 
 const ShareEventForm = () => {
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState(null);
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
-  const [releaseDate, setReleaseDate] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [isSaving, setIsSaving] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -35,8 +29,6 @@ const ShareEventForm = () => {
 
   const handleCreate = async () => {
     setErrors({});
-
-    setIsUploading(true);
     setIsSaving(true);
 
     try {
@@ -45,16 +37,15 @@ const ShareEventForm = () => {
       const payload = { title, message };
       const promises = [saveMemory(payload)];
 
-      if (file) {
-        promises.push(uploadFile(file));
-      }
-
       const [newMemory] = await Promise.all(promises);
+
+      if (files.length > 0) {
+        await saveFiles(files.map(v => ({ ...v, memoryId: newMemory.id })));
+      }
     } catch (err) {
       console.error("Error in handleCreate:", err);
     } finally {
       setTimeout(() => {
-        setIsUploading(false);
         setIsSaving(false);
       }, 350);
     }
@@ -65,6 +56,10 @@ const ShareEventForm = () => {
       setErrors({});
     }
   }, [title]);
+
+  useEffect(() => {
+    console.log("files", files);
+  }, [files]);
 
   return (
     <>
@@ -90,7 +85,7 @@ const ShareEventForm = () => {
             isVisible={selectedIndex === 0}
           />
           <AttachmentForm
-            onFileChange={setFile}
+            onFileUpload={setFiles}
             isVisible={selectedIndex === 1}
           />
           <TriggerForm isVisible={selectedIndex === 2} />
