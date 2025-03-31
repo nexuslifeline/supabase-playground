@@ -26,5 +26,9 @@ export const useSession = create((set, get) => ({
 
     if (parts.length === 1) return parts[0][0].toUpperCase();
     return (parts[0][0] + parts[1][0]).toUpperCase();
+  },
+  getEmail: () => {
+    const session = get().session;
+    return session?.user?.userMetadata?.email || "";
   }
 }));
