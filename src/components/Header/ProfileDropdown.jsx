@@ -9,7 +9,7 @@ import { useSession } from "@store/session";
 
 const ProfileDropdown = () => {
   const [isProcessing, setIsProcessing] = useState(false);
-  const { getEmail, getFullName, clearSession } = useSession();
+  const { getEmail, getFullName, clearSession, session } = useSession();
 
   const handleLogout = async () => {
     try {
@@ -22,6 +22,8 @@ const ProfileDropdown = () => {
       setIsProcessing(false);
     }
   };
+
+  console.log("session", session);
 
   const menuItemClasses =
     "cursor-pointer px-3 py-2 rounded-md hover:bg-gray-100 focus:bg-gray-200 focus:outline-none transition-colors";

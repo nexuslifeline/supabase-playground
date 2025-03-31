@@ -30,5 +30,9 @@ export const useSession = create((set, get) => ({
   getEmail: () => {
     const session = get().session;
     return session?.user?.userMetadata?.email || "";
+  },
+  getUserUid: () => {
+    const session = get().session;
+    return session?.user?.id || "";
   }
 }));

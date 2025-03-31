@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ShareInput from "@components/ShareInput/ShareInput";
 import Tabs from "@components/Tabs/Tabs";
 import Modal from "@/components/Modal/Modal";
 import ShareEventForm from "@/components/ShareEventForm/ShareEventForm";
 import Memory from "@/components/Memory/Memory";
+import { useSession } from "@/store/session";
 
 import { LuLayoutGrid } from "react-icons/lu";
 import { RiFileListLine } from "react-icons/ri";
@@ -74,11 +75,17 @@ const events = [
 ];
 
 function Timeline() {
+  const { getUserUid } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleShare = () => {
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    console.log("getUserUid", getUserUid());
+  }, []);
+
   return (
     <>
       <Modal
